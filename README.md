@@ -57,7 +57,7 @@ For guidance on setting up a development environment and how to make a contribut
 <br/><br/><br/>
 ## Links
 * **Changes :** [https://opensource.banglafighter.org/mweb/mweb](https://opensource.banglafighter.org/mweb/mweb)
-* **PyPI Releases :** [https://pypi.org/project/mwebb](https://pypi.org/project/mwebb)
+* **PyPI Releases :** [https://pypi.org/project/mweb](https://pypi.org/project/mwebb)
 * **Source Code :** [https://github.com/banglafighter/mweb](https://github.com/banglafighter/mweb)
 * **Issue Tracker :** [https://github.com/banglafighter/mweb/issues](https://github.com/banglafighter/mweb/issues)
 * **Website :** [https://www.problemfighter.com/open-source](https://www.problemfighter.com/open-source)
