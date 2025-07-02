@@ -1,6 +1,6 @@
 ### In the name of God, the Most Gracious, the Most Merciful.
 
-# MWeb - Python Manageable Web Framework
+# MWeb - Manageable Web Framework of Python
 Python Manageable Web Framework (MWeb). MWeb is a DRY full-stack framework based on PWeb framework.
 
 
@@ -38,12 +38,12 @@ The project will run in http://127.0.0.1:1212
 
 <br/><br/>
 
-**Please find [the Documentation]() with example from [hmtmcse.com/mwebb]()**
+**Please find [the Documentation](https://mweb.banglafighter.org/) with example from [hmtmcse.com/mweb](https://hmtmcse.com/mweb)**
 
 
 <br/><br/><br/>
 ## Donate
-[Bangla Fighter](https://www.banglafighter.com/) develops and supports MWeb and the libraries it uses. To grow
+[Bangla Fighter](https://banglafighter.com/) develops and supports MWeb and the libraries it uses. To grow
 the community of contributors and users, and allow the maintainers to devote more time to the projects.
 
 <a target="_blank" href="https://www.buymeacoffee.com/banglafighter" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me Us Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
@@ -56,11 +56,11 @@ For guidance on setting up a development environment and how to make a contribut
 
 <br/><br/><br/>
 ## Links
-* **Changes :** [https://opensource.banglafighter.org/mweb/mweb](https://opensource.banglafighter.org/mweb/mweb)
-* **PyPI Releases :** [https://pypi.org/project/mweb](https://pypi.org/project/mwebb)
+* **Changes :** [https://mweb.banglafighter.org/release/latest](https://mweb.banglafighter.org/release/latest)
+* **PyPI Releases :** [https://pypi.org/project/mweb](https://pypi.org/project/mweb)
 * **Source Code :** [https://github.com/banglafighter/mweb](https://github.com/banglafighter/mweb)
 * **Issue Tracker :** [https://github.com/banglafighter/mweb/issues](https://github.com/banglafighter/mweb/issues)
-* **Website :** [https://www.problemfighter.com/open-source](https://www.problemfighter.com/open-source)
+* **Website :** [https://mweb.banglafighter.org](https://mweb.banglafighter.org)
 
 
 <br/><br/><br/>
