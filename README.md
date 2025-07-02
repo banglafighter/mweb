@@ -67,17 +67,18 @@ For guidance on setting up a development environment and how to make a contribut
 
 ## Modules & Responsibilities
 
-| Package Name      | Actual Name                       | Description                                                                                                                                              |
-|-------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `mweb`            | MWeb                              | MWeb - Manageable Web Framework for Python                                                                                                               |
-| `mweb-orm`        | MWeb Object-Relational Mapper     | MWeb Object-Relational Mapper, based on SQLAlchemy, is an open-source SQL toolkit and object-relational mapper.                                          |
-| `mweb-cli`        | MWeb Command Line Interface       | Command line interface tools for MWeb application, which make MWeb work easy and automatic from terminal or CMD.                                         |
-| `mweb-auth`       | MWeb Authentication               | MWeb authentication system, which allows managing application basic level authentication, but it can be extended.                                        |
-| `mweb-crud`       | MWeb Create, Read, Update, Delete | Helps to easily perform Create, Read, Update, & Delete operations for REST-API and server-side rendering data processing, and can generate OpenAPI.      |
-| `mweb-ssr`        | MWeb Server Side Renderer         | Server-side rendered UI, forms, table headers, items per page, pagination, and Jinja customization.                                                      |
-| `mweb-builtin`    | MWeb Built-In Functionality       | Built-in helpers for email, task scheduling, and other useful features needed for development.                                                           |
-| `mweb-http`       | MWeb HTTP Client                  | Responsible for connecting to MWeb using HTTP; understands API calls and responses with authentication.                                                  |
-| `mweb-ui`         | MWeb Bootstrap UI                 | Server-side rendered UI, built on the latest Bootstrap version.                                                                                          |
-| `mweb-react`      | MWeb React UI                     | React-based UI framework.                                                                                                                               |
-| `mw-common`       | MWeb Common Utilities             | Provides common utilities to simplify development tasks.                                                                                                 |
-| `mw-file-content` | MWeb File & Content Helper        | Library for performing text read/write operations and file/directory manipulation.                                                                       |
+| Package Name      | Actual Name                       | Description                                                                                                                                         |
+|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `mweb`            | MWeb                              | MWeb - Manageable Web Framework for Python                                                                                                          |
+| `mweb-orm`        | MWeb Object-Relational Mapper     | MWeb Object-Relational Mapper, based on SQLAlchemy, is an open-source SQL toolkit and object-relational mapper.                                     |
+| `mweb-cli`        | MWeb Command Line Interface       | Command line interface tools for MWeb application, which make MWeb work easy and automatic from terminal or CMD.                                    |
+| `mweb-auth`       | MWeb Authentication               | MWeb authentication system, which allows managing application basic level authentication, but it can be extended.                                   |
+| `mweb-crud`       | MWeb Create, Read, Update, Delete | Helps to easily perform Create, Read, Update, & Delete operations for REST-API and server-side rendering data processing, and can generate OpenAPI. |
+| `mweb-ssr`        | MWeb Server Side Renderer         | Server-side rendered UI, forms, table headers, items per page, pagination, and Jinja customization.                                                 |
+| `mweb-builtin`    | MWeb Built-In Functionality       | Built-in helpers for email, task scheduling, and other useful features needed for development.                                                      |
+| `mweb-http`       | MWeb HTTP Client                  | Responsible for connecting to MWeb using HTTP; understands API calls and responses with authentication.                                             |
+| `mweb-ui`         | MWeb Bootstrap UI                 | Server-side rendered UI, built on the latest Bootstrap version.                                                                                     |
+| `mweb-react`      | MWeb React UI                     | React-based UI framework.                                                                                                                           |
+| `mw-common`       | MWeb Common Utilities             | Provides common utilities to simplify development tasks.                                                                                            |
+| `mw-file-content` | MWeb File & Content Helper        | Library for performing text read/write operations and file/directory manipulation.                                                                  |
+| `mweb-dev`        | MWeb Source Development           | This project is helps to source development of the MWeb Framework.                                                                                  |
