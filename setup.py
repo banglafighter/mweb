@@ -9,7 +9,7 @@ env = os.environ.get('source')
 
 
 def get_dependencies():
-    dependency = []
+    dependency = ["Quart==0.20.0"]
 
     if env and env == "code":
         return dependency
