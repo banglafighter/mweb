@@ -7,9 +7,8 @@ from mweb.engine.mweb_connector import MWebAppDefinition, MWebModule
 from mweb.engine.mweb_data import MWebModuleDetails
 from mweb.engine.mweb_hook import MWebHook
 from mweb.engine.mweb_registry import MWebRegistry
-import asyncio
-
 from mweb.engine.mweb_util import MWebUtil
+import asyncio
 
 
 class MWebModuleRegistry:
