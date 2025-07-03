@@ -10,6 +10,8 @@ from mweb.engine.mweb_base import MWebBase
 from mweb.engine.mweb_config import MWebConfig
 from mweb.engine.mweb_data import MWebInternalConfig
 from mweb.engine.mweb_helper import MWebHelper
+from mweb.engine.mweb_hook import MWebHook
+from mweb.engine.mweb_module_registry import MWebModuleRegistry
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
 
@@ -18,6 +20,8 @@ class MWebBismillah:
     _mweb_app: MWebBase = None
     _config: MWebConfig = None
     _mweb_helper: MWebHelper = None
+    _mweb_module_registry: MWebModuleRegistry = None
+    _hook: MWebHook = None
 
     def __init__(self, project_root_path: str, name: str = "MWeb", config: MWebConfig = None, internal_config: MWebInternalConfig = None):
         self._mweb_helper = MWebHelper()
@@ -40,6 +44,17 @@ class MWebBismillah:
         # Initialization
         self._merge_config(project_root_path=project_root_path, provided_config=config)
         MWebRegistry.mweb_app = self._mweb_app
+        self._hook = MWebUtil.get_mweb_hooks(config=self._config)
+
+        # Register Module
+        self._mweb_module_registry = MWebModuleRegistry()
+        self._mweb_module_registry.register(
+            mweb_app=self._mweb_app,
+            config=self._config,
+            hook=self._hook,
+            mweb_orm=None,
+            is_cli=False
+        )
 
     def run(self):
         self._mweb_app.run(host=self._config.HOST, port=self._config.PORT, debug=self._config.DEBUG)

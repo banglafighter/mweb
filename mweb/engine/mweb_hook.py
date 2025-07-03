@@ -1,0 +1,3 @@
+
+class MWebHook:
+    pass

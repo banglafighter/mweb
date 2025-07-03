@@ -24,7 +24,7 @@ class MWebConfig:
     STRING_IMPORT_SILENT: bool = False
     APPLICATION_CONFIGURATION: str = "application.config.app_config.Config"
     APPLICATION_HOOK: str = "application.config.app_hook.Hook"
-    APPLICATION_MODULE_REGISTRY: str = "application.config.module_registry.Register"
+    APPLICATION_DEFINITION: str = "application.config.app_def.AppDef"
 
     # CORS
     CORS_REST_URL_START_WITH = "/api/*"
