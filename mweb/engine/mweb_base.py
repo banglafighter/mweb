@@ -12,12 +12,12 @@ from quart.utils import observe_changes, MustReloadError, restart
 from quart.app import _cancel_all_tasks
 from quart.helpers import get_debug_flag
 from mw_common.mw_console_log import Console
-from mweb import Controller
+from mweb import BaseController
 
 
 class MWebBase(Quart):
 
-    def add_controller(self, controller: Controller):
+    def add_controller(self, controller: BaseController):
         self.register_blueprint(controller)
 
     def run(
