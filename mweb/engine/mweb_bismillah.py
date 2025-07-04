@@ -14,6 +14,7 @@ from mweb.engine.mweb_hook import MWebHook
 from mweb.engine.mweb_module_registry import MWebModuleRegistry
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
+from mweb_crud import MWebCRUDModule
 
 
 class MWebBismillah:
@@ -45,6 +46,9 @@ class MWebBismillah:
         self._merge_config(project_root_path=project_root_path, provided_config=config)
         MWebRegistry.mweb_app = self._mweb_app
         self._hook = MWebUtil.get_mweb_hooks(config=self._config)
+
+        # Register System Module
+        self._register_system_modules()
 
         # Register Module
         self._mweb_module_registry = MWebModuleRegistry()
@@ -100,3 +104,6 @@ class MWebBismillah:
 
         self._config = provided_config
         MWebRegistry.config = provided_config
+
+    def _register_system_modules(self):
+        MWebCRUDModule().register(mweb_app=self._mweb_app, config=self._config)
