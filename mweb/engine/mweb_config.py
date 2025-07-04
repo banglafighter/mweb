@@ -3,7 +3,7 @@ import os
 
 class MWebConfig:
     APP_NAME: str = "MWeb"
-    PORT: int = 1212
+    PORT: int = 4012
     HOST: str = "127.0.0.1"
 
     DEBUG: bool = True
