@@ -69,9 +69,9 @@ class MWebBismillah:
         return self._mweb_app
 
     def cli(self):
-        Console.yellow("-------------------------", system_log=True)
-        Console.green("   Welcome to MWeb CLI   ", True, system_log=True)
-        Console.yellow("-------------------------", system_log=True)
+        Console.yellow("----------------------------------------", system_log=True)
+        Console.green("         Welcome to MWeb CLI   ", True, system_log=True)
+        Console.yellow("----------------------------------------", system_log=True)
 
         @click.group(cls=MWebCLIGroup, create_app=self.get_app)
         def invoke_cli_script():
