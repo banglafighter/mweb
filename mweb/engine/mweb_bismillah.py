@@ -1,12 +1,12 @@
 import os
 import click
-from quart.cli import QuartGroup
 from mw_common.mw_console_log import Console
 from mw_common.mw_data_util import DataUtil
 from mw_common.pw_util import MwUtil
 from mw_file_content.file.mwfc_file_util import FileUtil
 from mw_file_content.file_content.mwfc_data_file_util import DataFileUtil
 from mweb.engine.mweb_base import MWebBase
+from mweb.engine.mweb_cli import MWebCLIGroup
 from mweb.engine.mweb_config import MWebConfig
 from mweb.engine.mweb_data import MWebInternalConfig
 from mweb.engine.mweb_helper import MWebHelper
@@ -15,6 +15,8 @@ from mweb.engine.mweb_module_registry import MWebModuleRegistry
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
 from mweb_crud import MWebCRUDModule
+from mweb_orm.mweb_orm_module import MWebORMModule
+from mweb_orm.orm.mweb_orm import mweb_orm
 
 
 class MWebBismillah:
@@ -56,7 +58,7 @@ class MWebBismillah:
             mweb_app=self._mweb_app,
             config=self._config,
             hook=self._hook,
-            mweb_orm=None,
+            mweb_orm=mweb_orm,
             is_cli=False
         )
 
@@ -71,7 +73,7 @@ class MWebBismillah:
         Console.green("   Welcome to MWeb CLI   ", True, system_log=True)
         Console.yellow("-------------------------", system_log=True)
 
-        @click.group(cls=QuartGroup, create_app=self.get_app)
+        @click.group(cls=MWebCLIGroup, create_app=self.get_app)
         def invoke_cli_script():
             pass
 
@@ -98,12 +100,14 @@ class MWebBismillah:
                     setattr(app_config_class, yaml_property, DataUtil.dict_value(yml_config_dict, yaml_property))
 
         # Merge all the application config into provided config
-        for conf_property in dir(app_config_class):
-            if conf_property.isupper():
-                setattr(provided_config, conf_property, getattr(app_config_class, conf_property))
+        app_config_props = app_config_class.__dict__
+        for conf_property_key, conf_property_value in app_config_props.items():
+            if conf_property_key.isupper() and not callable(conf_property_value) and not conf_property_key.startswith("__") and hasattr(provided_config, conf_property_key):
+                setattr(provided_config, conf_property_key, getattr(app_config_class, conf_property_value))
 
         self._config = provided_config
         MWebRegistry.config = provided_config
 
     def _register_system_modules(self):
-        MWebCRUDModule().register(mweb_app=self._mweb_app, config=self._config)
+        MWebORMModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
+        MWebCRUDModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)

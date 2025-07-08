@@ -21,6 +21,7 @@ class MWebUtil:
         mweb_hook = MWebHook()
         hook_class = MwUtil.import_from_string(config.APPLICATION_HOOK, True)
         if hook_class:
+            MwUtil.is_sub_class_of(hook_class, parent_class=MWebHook, message=f"App Hook is not a subclass of MWebHook. Path: {config.APPLICATION_HOOK}")
             hook_map = dir(hook_class)
             for key in hook_map:
                 if key.isupper():
