@@ -17,7 +17,7 @@ from mweb import BaseController
 
 class MWebBase(Quart):
 
-    def add_controller(self, controller: BaseController):
+    def register_controller(self, controller: BaseController):
         self.register_blueprint(controller)
 
     def run(
