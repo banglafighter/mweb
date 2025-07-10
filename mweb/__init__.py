@@ -4,4 +4,4 @@ from .engine.mweb_controller import BaseController
 from .engine.mweb_base import MWebBase
 from .engine.mweb_config import MWebConfig
 from .engine.mweb_connector import MWebAppDefinition
-from .engine.mweb_template import template
+from .engine.mweb_response import MWebResponse
