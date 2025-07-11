@@ -15,7 +15,9 @@ class MWebResponse:
         return asyncio.run(render_template(template_name_or_list=template_name_or_list, **context))
 
     @staticmethod
-    async def make_response(content: str | dict | list, headers: dict = None, http_code: int = 200):
+    async def make_response(content: str | dict | list, headers: dict = None, http_code: int = None):
+        if http_code is None:
+            http_code = 200
         response = await make_response(content, http_code)
         if headers:
             response.headers.update(headers)
