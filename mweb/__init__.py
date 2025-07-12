@@ -7,6 +7,10 @@ from .engine.mweb_connector import MWebAppDefinition
 from .engine.mweb_response import MWebResponse
 from quart import request as mweb_request
 
+from quart.datastructures import FileStorage as QUartFileStorage
+
+FileStorage = QUartFileStorage
+
 __all__ = [
     "mweb_request",
     "MWebResponse",
@@ -17,4 +21,5 @@ __all__ = [
     "MWebConfig",
     "MWebAppDefinition",
     "MWebResponse",
+    "FileStorage",
 ]
