@@ -92,19 +92,21 @@ class MWebBismillah:
         root_dir = os.path.dirname(os.path.abspath(project_root_path))
         provided_config.set_base_dir(root_dir)
 
-        # Read YAML Configuration and Update to Application Config
-        yml_config_file = FileUtil.join_path(provided_config.APP_CONFIG_PATH, MWebUtil.get_yml_environment_file_name())
-        yml_config_dict = DataFileUtil.read_yaml(file_path=yml_config_file, raise_exception=False)
-        if yml_config_dict:
-            for yaml_property in yml_config_dict:
-                if hasattr(app_config_class, yaml_property):
-                    setattr(app_config_class, yaml_property, DataUtil.dict_value(yml_config_dict, yaml_property))
-
         # Merge all the application config into provided config
         app_config_props = app_config_class.__dict__
         for conf_property_key, conf_property_value in app_config_props.items():
             if conf_property_key.isupper() and not callable(conf_property_value) and not conf_property_key.startswith("__") and hasattr(provided_config, conf_property_key):
                 setattr(provided_config, conf_property_key, getattr(app_config_class, conf_property_key))
+
+        # Read YAML Configuration and Update to Application Config
+        yml_config_file = FileUtil.join_path(provided_config.APP_CONFIG_PATH, MWebUtil.get_yml_environment_file_name())
+        yml_config_dict = DataFileUtil.read_yaml(file_path=yml_config_file, raise_exception=False)
+        if yml_config_dict:
+            for yaml_property in yml_config_dict:
+                value = DataUtil.dict_value(yml_config_dict, yaml_property)
+                setattr(app_config_class, yaml_property, value)
+                setattr(provided_config, yaml_property, value)
+
 
         self._config = provided_config
         MWebRegistry.config = provided_config
