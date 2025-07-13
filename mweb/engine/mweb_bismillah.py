@@ -14,6 +14,7 @@ from mweb.engine.mweb_hook import MWebHook
 from mweb.engine.mweb_module_registry import MWebModuleRegistry
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
+from mweb_auth.mweb_auth_module import MWebAuthModule
 from mweb_crud import MWebCRUDModule
 from mweb_orm.mweb_orm_module import MWebORMModule
 from mweb_orm.orm.mweb_orm import mweb_orm
@@ -111,3 +112,4 @@ class MWebBismillah:
     def _register_system_modules(self):
         MWebORMModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
         MWebCRUDModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
+        MWebAuthModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
