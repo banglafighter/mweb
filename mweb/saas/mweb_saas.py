@@ -1,6 +1,5 @@
 import contextvars
 from .mweb_saas_connector import MWebTenantResolver
-from ..engine.mweb_hook import MWebHook
 
 
 class MWebSaaSConst:
@@ -14,6 +13,7 @@ class MWebSaaS:
 
     @classmethod
     def init_tenant_key(cls, tenant_key=None):
+        from ..engine.mweb_hook import MWebHook
         try:
             tenant_resolver: MWebTenantResolver = MWebHook.tenant_resolver()
             if tenant_key:
