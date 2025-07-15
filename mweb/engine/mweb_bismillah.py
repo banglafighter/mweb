@@ -11,6 +11,7 @@ from mweb.engine.mweb_config import MWebConfig
 from mweb.engine.mweb_data import MWebInternalConfig
 from mweb.engine.mweb_helper import MWebHelper
 from mweb.engine.mweb_hook import MWebHook
+from .mweb_system_config import MWebSystemConfig
 from mweb.engine.mweb_module_registry import MWebModuleRegistry
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
@@ -26,6 +27,7 @@ class MWebBismillah:
     _mweb_helper: MWebHelper = None
     _mweb_module_registry: MWebModuleRegistry = None
     _hook: MWebHook = None
+    _system_config: MWebSystemConfig = None
 
     def __init__(self, project_root_path: str, name: str = "MWeb", config: MWebConfig = None, internal_config: MWebInternalConfig = None):
         self._mweb_helper = MWebHelper()
@@ -49,6 +51,7 @@ class MWebBismillah:
         self._merge_config(project_root_path=project_root_path, provided_config=config)
         MWebRegistry.mweb_app = self._mweb_app
         self._hook = MWebUtil.get_mweb_hooks(config=self._config)
+        self._system_config = MWebUtil.get_mweb_sys_config(config=self._config)
 
         # Register System Module
         self._register_system_modules()
@@ -114,4 +117,6 @@ class MWebBismillah:
     def _register_system_modules(self):
         MWebORMModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
         MWebCRUDModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
-        MWebAuthModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)
+
+        if self._config.ENABLE_AUTH:
+            MWebAuthModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook, system_config=self._system_config)
