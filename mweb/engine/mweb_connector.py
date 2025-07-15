@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from mweb.engine.mweb_system_config import MWebSystemConfig
 from mweb.engine.mweb_base import MWebBase
 from mweb.engine.mweb_config import MWebConfig
 from mweb.engine.mweb_data import MWebModuleDetails
@@ -36,7 +37,7 @@ class MWebModule(ABC):
         """
 
     @abstractmethod
-    def initialize(self, mweb_app: MWebBase, config: MWebConfig, hook: MWebHook, **kwargs):
+    def initialize(self, mweb_app: MWebBase, config: MWebConfig, hook: MWebHook, system_config: MWebSystemConfig, **kwargs):
         """
         Precedence: 2
         """

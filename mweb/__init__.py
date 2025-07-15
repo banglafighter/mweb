@@ -3,6 +3,7 @@ from .engine.mweb_controller import SSRController
 from .engine.mweb_controller import BaseController
 from .engine.mweb_base import MWebBase
 from .engine.mweb_config import MWebConfig
+from .engine.mweb_system_config import MWebSystemConfig
 from .engine.mweb_connector import MWebAppDefinition
 from .engine.mweb_response import MWebResponse
 from quart import request as mweb_request
@@ -22,4 +23,5 @@ __all__ = [
     "MWebAppDefinition",
     "MWebResponse",
     "FileStorage",
+    "MWebSystemConfig",
 ]
