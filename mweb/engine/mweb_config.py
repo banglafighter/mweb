@@ -9,6 +9,7 @@ class MWebConfig:
     DEBUG: bool = True
     SECRET_KEY: str = 'random_secret_key_base'
 
+    ENABLE_AUTH: bool = True
     ENABLE_SAAS: bool = False
 
     # Database Configuration
@@ -35,6 +36,7 @@ class MWebConfig:
 
     STRING_IMPORT_SILENT: bool = False
     APPLICATION_CONFIGURATION: str = "application.config.app_config.Config"
+    SYSTEM_CONFIGURATION: str = "application.config.app_sys_config.SystemConfig"
     APPLICATION_HOOK: str = "application.config.app_hook.Hook"
     APPLICATION_DEFINITION: str = "application.config.app_def.AppDef"
 
