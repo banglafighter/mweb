@@ -1,5 +1,6 @@
 import os
 import click
+import asyncio
 from mw_common.mw_console_log import Console
 from mw_common.mw_data_util import DataUtil
 from mw_common.pw_util import MwUtil
@@ -19,6 +20,7 @@ from mweb_auth.mweb_auth_module import MWebAuthModule
 from mweb_crud import MWebCRUDModule
 from mweb_orm.mweb_orm_module import MWebORMModule
 from mweb_orm.orm.mweb_orm import mweb_orm
+from ..cli.mweb_module_cli import register_mweb_module_cli
 
 
 class MWebBismillah:
@@ -56,14 +58,20 @@ class MWebBismillah:
         # Register System Module
         self._register_system_modules()
 
+        # Register CLI
+        self._register_cli()
+
         # Register Module
         self._mweb_module_registry = MWebModuleRegistry()
-        self._mweb_module_registry.register(
-            mweb_app=self._mweb_app,
-            config=self._config,
-            hook=self._hook,
-            mweb_orm=mweb_orm,
-            is_cli=False
+        asyncio.run(
+            self._mweb_module_registry.register(
+                mweb_app=self._mweb_app,
+                config=self._config,
+                hook=self._hook,
+                mweb_orm=mweb_orm,
+                system_config=self._system_config,
+                is_cli=False
+            )
         )
 
     def run(self):
@@ -120,3 +128,6 @@ class MWebBismillah:
 
         if self._config.ENABLE_AUTH:
             MWebAuthModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook, system_config=self._system_config)
+
+    def _register_cli(self):
+        register_mweb_module_cli(mweb_app=self._mweb_app, config=self._config, hook=self._hook, system_config=self._system_config, mweb_orm=mweb_orm)

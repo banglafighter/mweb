@@ -1,6 +1,7 @@
 from mw_common.mw_console_log import Console
 from mw_common.mw_exception import MwException
 from mw_common.pw_util import MwUtil
+from mweb import MWebSystemConfig
 from mweb.engine.mweb_base import MWebBase
 from mweb.engine.mweb_config import MWebConfig
 from mweb.engine.mweb_connector import MWebAppDefinition, MWebModule
@@ -8,7 +9,6 @@ from mweb.engine.mweb_data import MWebModuleDetails
 from mweb.engine.mweb_hook import MWebHook
 from mweb.engine.mweb_registry import MWebRegistry
 from mweb.engine.mweb_util import MWebUtil
-import asyncio
 
 
 class MWebModuleRegistry:
@@ -16,17 +16,19 @@ class MWebModuleRegistry:
     _config: MWebConfig = None
     _mweb_orm = None
     _hook: MWebHook = None
+    _system_config: MWebSystemConfig = None
 
-    def register(self, mweb_app: MWebBase, config: MWebConfig, mweb_orm, hook: MWebHook=None, is_cli: bool = False):
+    async def register(self, mweb_app: MWebBase, config: MWebConfig, mweb_orm, hook: MWebHook, system_config: MWebSystemConfig, is_cli: bool = False):
         self._mweb_app = mweb_app
         self._config = config
         self._mweb_orm = mweb_orm
+        self._system_config = system_config
 
         if not hook is None:
             hook = MWebUtil.get_mweb_hooks(config=self._config)
 
         self._hook = hook
-        asyncio.run(self.register_modules(config=config, is_cli=is_cli))
+        await self.register_modules(config=config, is_cli=is_cli)
 
     async def register_modules(self, config: MWebConfig = None, is_cli: bool = False):
         modules = self.get_modules(config=config)
@@ -37,13 +39,14 @@ class MWebModuleRegistry:
             for module in modules:
                 try:
                     _module: MWebModule = self.validate_and_get_module_instance(module=module)
-                    self.register_module(module=_module)
-                    _module.initialize(mweb_app=self._mweb_app, config=config, hook=self._hook)
-                    _module.register_model(mweb_db=None)
-                    _module.register_controller(mweb_app=self._mweb_app)
-                    _module.run_on_start(mweb_app=self._mweb_app, config=self._config)
                     if is_cli:
                         _module.run_on_cli_init(mweb_app=self._mweb_app, config=self._config)
+                    else:
+                        self.register_module(module=_module)
+                        _module.initialize(mweb_app=self._mweb_app, config=config, hook=self._hook, system_config=self._system_config)
+                        _module.register_model(mweb_orm=self._mweb_orm)
+                        _module.register_controller(mweb_app=self._mweb_app)
+                        _module.run_on_start(mweb_app=self._mweb_app, config=self._config)
                 except MwException as e:
                     Console.error(e, system_log=True)
 

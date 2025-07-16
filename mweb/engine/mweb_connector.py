@@ -43,7 +43,7 @@ class MWebModule(ABC):
         """
 
     @abstractmethod
-    def register_model(self, mweb_db) -> list:
+    def register_model(self, mweb_orm) -> list:
         """
         Precedence: 3
         Normally Models are automatically register if not registered, then pass here
