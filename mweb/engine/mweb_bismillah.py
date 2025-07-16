@@ -21,6 +21,7 @@ from mweb_crud import MWebCRUDModule
 from mweb_orm.mweb_orm_module import MWebORMModule
 from mweb_orm.orm.mweb_orm import mweb_orm
 from ..cli.mweb_module_cli import register_mweb_module_cli
+from ..extensions.mweb_cors import MWebCORS
 
 
 class MWebBismillah:
@@ -60,6 +61,7 @@ class MWebBismillah:
 
         # Register CLI
         self._register_cli()
+        self._register_extensions()
 
         # Register Module
         self._mweb_module_registry = MWebModuleRegistry()
@@ -131,3 +133,6 @@ class MWebBismillah:
 
     def _register_cli(self):
         register_mweb_module_cli(mweb_app=self._mweb_app, config=self._config, hook=self._hook, system_config=self._system_config, mweb_orm=mweb_orm)
+
+    def _register_extensions(self):
+        MWebCORS().register(mweb_app=self._mweb_app, config=self._config)

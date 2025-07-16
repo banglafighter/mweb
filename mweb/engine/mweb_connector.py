@@ -37,7 +37,7 @@ class MWebModule(ABC):
         """
 
     @abstractmethod
-    def initialize(self, mweb_app: MWebBase, config: MWebConfig, hook: MWebHook, system_config: MWebSystemConfig, **kwargs):
+    async def initialize(self, mweb_app: MWebBase, config: MWebConfig, hook: MWebHook, system_config: MWebSystemConfig, **kwargs):
         """
         Precedence: 2
         """
@@ -57,14 +57,14 @@ class MWebModule(ABC):
         """
 
     @abstractmethod
-    def run_on_start(self, mweb_app: MWebBase, config: MWebConfig):
+    async def run_on_start(self, mweb_app: MWebBase, config: MWebConfig):
         """
         Precedence: 5
         It will call when the application is started.
         """
 
     @abstractmethod
-    def run_on_cli_init(self, mweb_app: MWebBase, config: MWebConfig):
+    async def run_on_cli_init(self, mweb_app: MWebBase, config: MWebConfig):
         """
         Precedence: 6
         Only call when `module init` command run from cli

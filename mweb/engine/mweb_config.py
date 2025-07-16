@@ -41,11 +41,14 @@ class MWebConfig:
     APPLICATION_DEFINITION: str = "application.config.app_def.AppDef"
 
     # CORS
-    CORS_REST_URL_START_WITH = "/api/*"
-    CORS_STATIC_URL_START_WITH = "/static/*"
+    CORS_ENABLED: bool = True
+    CORS_REST_URL_START_WITH: list = ["/api/*"]
+    CORS_STATIC_URL_START_WITH: list = ["/static/*"]
     CORS_ALLOW_ORIGINS: list = ["*"]
     CORS_ALLOW_ACCESS_CONTROL_ORIGIN: str = "*"
-    CORS_CONFIG: dict = None
+    CORS_ALLOW_METHODS: str = "GET,POST,DELETE,OPTIONS"
+    CORS_ALLOW_HEADERS: str = "Authorization,Content-Type"
+    CORS_ALLOW_CREDENTIALS: str = "true"
 
     def set_base_dir(self, path):
         if not self.BASE_DIR:

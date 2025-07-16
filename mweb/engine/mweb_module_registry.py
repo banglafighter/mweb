@@ -40,13 +40,13 @@ class MWebModuleRegistry:
                 try:
                     _module: MWebModule = self.validate_and_get_module_instance(module=module)
                     if is_cli:
-                        _module.run_on_cli_init(mweb_app=self._mweb_app, config=self._config)
+                        await _module.run_on_cli_init(mweb_app=self._mweb_app, config=self._config)
                     else:
                         self.register_module(module=_module)
-                        _module.initialize(mweb_app=self._mweb_app, config=config, hook=self._hook, system_config=self._system_config)
+                        await _module.initialize(mweb_app=self._mweb_app, config=config, hook=self._hook, system_config=self._system_config)
                         _module.register_model(mweb_orm=self._mweb_orm)
                         _module.register_controller(mweb_app=self._mweb_app)
-                        _module.run_on_start(mweb_app=self._mweb_app, config=self._config)
+                        await _module.run_on_start(mweb_app=self._mweb_app, config=self._config)
                 except MwException as e:
                     Console.error(e, system_log=True)
 
