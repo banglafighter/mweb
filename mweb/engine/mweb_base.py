@@ -20,6 +20,10 @@ class MWebBase(Quart):
     def register_exception_handler(self, exception_class: type[MwException], handler):
         self.register_error_handler(exception_class, handler)
 
+    @property
+    def controllers(self) -> dict:
+        return self.blueprints
+
     def run(
             self,
             host: str | None = None,
