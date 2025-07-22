@@ -108,7 +108,7 @@ class MWebBismillah:
         # Merge all the application config into provided config
         app_config_props = app_config_class.__dict__
         for conf_property_key, conf_property_value in app_config_props.items():
-            if conf_property_key.isupper() and not callable(conf_property_value) and not conf_property_key.startswith("__") and hasattr(provided_config, conf_property_key):
+            if conf_property_key.isupper() and not callable(conf_property_value) and not conf_property_key.startswith("__"):
                 setattr(provided_config, conf_property_key, getattr(app_config_class, conf_property_key))
 
         # Read YAML Configuration and Update to Application Config
