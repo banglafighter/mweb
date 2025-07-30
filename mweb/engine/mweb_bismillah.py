@@ -1,6 +1,9 @@
 import os
 import click
 import asyncio
+
+from quart import make_response, send_from_directory
+
 from mw_common.mw_console_log import Console
 from mw_common.mw_data_util import DataUtil
 from mw_common.pw_util import MwUtil
@@ -55,6 +58,9 @@ class MWebBismillah:
         MWebRegistry.mweb_app = self._mweb_app
         self._hook = MWebUtil.get_mweb_hooks(config=self._config)
         self._system_config = MWebUtil.get_mweb_sys_config(config=self._config)
+
+        # Register assets url
+        self._register_assets_path()
 
         # Register System Module
         self._register_system_modules()
@@ -137,3 +143,13 @@ class MWebBismillah:
 
     def _register_extensions(self):
         MWebCORS().register(mweb_app=self._mweb_app, config=self._config)
+
+    def _register_assets_path(self):
+        if self._config.UPLOADED_STATIC_RESOURCES_URL and self._config.UPLOADED_STATIC_RESOURCES_URL != "":
+            url = self._config.UPLOADED_STATIC_RESOURCES_URL + "/<path:path>"
+            self._mweb_app.add_url_rule(url, view_func=self._static_resource_endpoint)
+
+    async def _static_resource_endpoint(self, path):
+        response = await make_response(await send_from_directory(self._config.UPLOADED_STATIC_RESOURCES, path))
+        response.headers['Access-Control-Allow-Origin'] = self._config.CORS_ALLOW_ACCESS_CONTROL_ORIGIN
+        return response
