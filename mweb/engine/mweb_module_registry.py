@@ -1,3 +1,4 @@
+import traceback
 from mw_common.mw_console_log import Console
 from mw_common.mw_exception import MwException
 from mw_common.pw_util import MwUtil
@@ -48,6 +49,7 @@ class MWebModuleRegistry:
                         _module.register_controller(mweb_app=self._mweb_app)
                         await _module.run_on_start(mweb_app=self._mweb_app, config=self._config)
                 except MwException as e:
+                    traceback.print_exc()
                     Console.error(e, system_log=True)
 
     def register_module(self, module: MWebModule):
