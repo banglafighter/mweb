@@ -13,7 +13,7 @@ class MWebHook:
     def get_hook(cls, hook_name: str, hook_type: Type[T], default=None) -> T | None:
         if hasattr(cls, hook_name):
             hook = getattr(cls, hook_name)
-            if hook is None and isinstance(default, hook_type):
+            if hook is not None and isinstance(default, hook_type):
                 return cast(T, getattr(cls, hook_name))
         return default
 
