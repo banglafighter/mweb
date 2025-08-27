@@ -26,7 +26,7 @@ class MWebResponse:
         return response
 
     @classmethod
-    async def json_response(cls, content: dict | list, headers: dict = None, http_code: int = None):
+    async def json_response(cls, content: str | dict | list, headers: dict = None, http_code: int = None):
         if not http_code:
             http_code = 200
 
@@ -34,7 +34,7 @@ class MWebResponse:
             headers = {}
 
         headers["Content-Type"] = HTTPContentType.APPLICATION_UNICODE_JSON
-        return await MWebResponse.make_response(content=content, headers=headers, http_code=http_code)
+        return await cls.make_response(content=content, headers=headers, http_code=http_code)
 
     @classmethod
     async def send_from_directory(cls, directory: FilePath, file_name: str, mimetype: str | None = None, as_attachment: bool = False, attachment_filename: str | None = None, add_etags: bool = True, cache_timeout: int | None = None, conditional: bool = True, last_modified: datetime | None = None) -> Response:
