@@ -1,6 +1,7 @@
 import asyncio
 from datetime import datetime
-from quart import render_template, make_response, send_from_directory, Response
+from io import BytesIO
+from quart import render_template, make_response, send_from_directory, Response, send_file
 from typing import Any
 from quart.typing import FilePath
 from mw_common import HTTPContentType
@@ -21,6 +22,21 @@ class MWebResponse:
         if http_code is None:
             http_code = 200
         response = await make_response(content, http_code)
+        if headers:
+            response.headers.update(headers)
+        return response
+
+    @classmethod
+    async def send_file(cls, filename_or_io: FilePath | BytesIO, mimetype: str | None = None, as_attachment: bool = False, attachment_filename: str | None = None, headers: dict = None, http_code: int = None):
+        if http_code is None:
+            http_code = 200
+        response = await send_file(
+            filename_or_io=filename_or_io,
+            mimetype=mimetype,
+            as_attachment=as_attachment,
+            attachment_filename=attachment_filename
+        )
+        response.status_code = http_code
         if headers:
             response.headers.update(headers)
         return response
