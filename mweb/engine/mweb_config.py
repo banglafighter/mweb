@@ -34,6 +34,9 @@ class MWebConfig:
     UPLOADED_STATIC_RESOURCES: str = None
     UPLOADED_STATIC_RESOURCES_URL: str = "/assets"
 
+    DEFAULT_ASSETS_DIR: str = None
+    DEFAULT_ASSETS_URL: str = "/default-assets"
+
     STRING_IMPORT_SILENT: bool = False
     APPLICATION_CONFIGURATION: str = "application.config.app_config.Config"
     SYSTEM_CONFIGURATION: str = "application.config.app_sys_config.SystemConfig"
@@ -64,4 +67,6 @@ class MWebConfig:
             self.TEMP_DIR = os.path.join(self.BASE_DIR, "mweb-temp")
         if not self.INTERNAL_DATA_DIR:
             self.INTERNAL_DATA_DIR = os.path.join(self.BASE_DIR, "mweb-internal")
+        if not self.DEFAULT_ASSETS_DIR:
+            self.DEFAULT_ASSETS_DIR = os.path.join(self.BASE_DIR, "default-assets")
         return self

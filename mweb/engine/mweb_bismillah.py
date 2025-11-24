@@ -149,7 +149,16 @@ class MWebBismillah:
             url = self._config.UPLOADED_STATIC_RESOURCES_URL + "/<path:path>"
             self._mweb_app.add_url_rule(url, view_func=self._static_resource_endpoint)
 
+        if self._config.DEFAULT_ASSETS_URL and self._config.DEFAULT_ASSETS_URL != "":
+            url = self._config.DEFAULT_ASSETS_URL + "/<path:path>"
+            self._mweb_app.add_url_rule(url, view_func=self._default_assets_endpoint)
+
     async def _static_resource_endpoint(self, path):
         response = await make_response(await send_from_directory(self._config.UPLOADED_STATIC_RESOURCES, path))
+        response.headers['Access-Control-Allow-Origin'] = self._config.CORS_ALLOW_ACCESS_CONTROL_ORIGIN
+        return response
+
+    async def _default_assets_endpoint(self, path):
+        response = await make_response(await send_from_directory(self._config.DEFAULT_ASSETS_DIR, path))
         response.headers['Access-Control-Allow-Origin'] = self._config.CORS_ALLOW_ACCESS_CONTROL_ORIGIN
         return response
