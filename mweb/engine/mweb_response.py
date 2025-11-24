@@ -1,7 +1,7 @@
 import asyncio
 from datetime import datetime
 from io import BytesIO
-from quart import render_template, make_response, send_from_directory, Response, send_file
+from quart import render_template, make_response, send_from_directory, Response, send_file, render_template_string
 from typing import Any
 from quart.typing import FilePath
 from mw_common import HTTPContentType
@@ -12,6 +12,10 @@ class MWebResponse:
     @classmethod
     async def render_template(cls, template_name_or_list: str | list[str], **context: Any):
         return await render_template(template_name_or_list, **context)
+
+    @classmethod
+    async def render_template_string(cls, source: str, **context: Any):
+        return await render_template_string(source, **context)
 
     @classmethod
     def sync_render_template(cls, template_name_or_list: str | list[str], **context: Any):
