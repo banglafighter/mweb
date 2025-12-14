@@ -1,6 +1,5 @@
 from typing import Type, TypeVar, cast
-
-from mweb.saas.mweb_saas_connector import MWebTenantResolver, MWebExternalSaaSConfig
+from ..saas.mweb_saas_connector import MWebTenantResolver, MWebExternalSaaSConfig
 
 T = TypeVar('T')
 
