@@ -127,9 +127,11 @@ class MWebBismillah:
                 setattr(app_config_class, yaml_property, value)
                 setattr(provided_config, yaml_property, value)
 
-
         self._config = provided_config
         MWebRegistry.config = provided_config
+
+        if self._config.SECRET_KEY:
+            self._mweb_app.set_secret_key(key=self._config.SECRET_KEY)
 
     def _register_system_modules(self):
         MWebORMModule().register(mweb_app=self._mweb_app, config=self._config, hook=self._hook)

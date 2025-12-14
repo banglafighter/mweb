@@ -24,6 +24,9 @@ class MWebBase(Quart):
     def controllers(self) -> dict:
         return self.blueprints
 
+    def set_secret_key(self, key: str):
+        self.secret_key = key
+
     def run(
             self,
             host: str | None = None,
