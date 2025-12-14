@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from mweb.engine.mweb_system_config import MWebSystemConfig
-from mweb.engine.mweb_base import MWebBase
-from mweb.engine.mweb_config import MWebConfig
-from mweb.engine.mweb_data import MWebModuleDetails
-from mweb.engine.mweb_hook import MWebHook
+from .mweb_system_config import MWebSystemConfig
+from .mweb_base import MWebBase
+from .mweb_config import MWebConfig
+from .mweb_data import MWebModuleDetails
+from .mweb_hook import MWebHook
 
 
 class MWebAppDefinition(ABC):
