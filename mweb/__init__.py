@@ -9,13 +9,14 @@ from .engine.mweb_response import MWebResponse
 from quart import request as mweb_request, redirect as quart_redirect, url_for as quart_url_for
 
 from quart.datastructures import FileStorage as QUartFileStorage
-from quart import Response as QuartResponse, request as quart_request
+from quart import Response as QuartResponse, request as quart_request, session as quart_session
 
 request = quart_request
 FileStorage = QUartFileStorage
 Response = QuartResponse
 redirect = quart_redirect
 url_for = quart_url_for
+session = quart_session
 
 __all__ = [
     "request",
@@ -33,4 +34,5 @@ __all__ = [
     "Response",
     "redirect",
     "url_for",
+    "session",
 ]
