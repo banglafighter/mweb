@@ -1,10 +1,11 @@
 import asyncio
+import os
 from datetime import datetime
 from io import BytesIO
 from quart import render_template, make_response, send_from_directory, Response, send_file, render_template_string
 from typing import Any
 from quart.typing import FilePath
-from mw_common import HTTPContentType
+from mw_common import HTTPContentType, MwException
 
 
 class MWebResponse:
@@ -68,4 +69,31 @@ class MWebResponse:
             cache_timeout=cache_timeout,
             conditional=conditional,
             last_modified=last_modified
+        )
+
+    @classmethod
+    async def response_pdf(cls, bytes_content: bytes = None, file_path: str = None, download: bool = True, filename: str = None):
+        if not bytes_content and not file_path:
+            raise MwException("Either bytes_content or file_path must be provided.")
+
+        if not filename:
+            if file_path:
+                filename = os.path.basename(file_path)
+            else:
+                filename = "document.pdf"
+        elif filename:
+            filename = f"{filename}.pdf"
+
+        if file_path:
+            if not os.path.exists(file_path):
+                raise MwException(f"PDF file not found: {file_path}")
+            pdf_source = file_path
+        else:
+            pdf_source = BytesIO(bytes_content)
+
+        return await cls.send_file(
+            filename_or_io=pdf_source,
+            mimetype="application/pdf",
+            as_attachment=download,
+            attachment_filename=filename
         )
