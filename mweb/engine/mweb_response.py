@@ -1,7 +1,8 @@
 import asyncio
+import csv
 import os
 from datetime import datetime
-from io import BytesIO
+from io import BytesIO, StringIO
 from quart import render_template, make_response, send_from_directory, Response, send_file, render_template_string
 from typing import Any
 from quart.typing import FilePath
@@ -96,4 +97,25 @@ class MWebResponse:
             mimetype="application/pdf",
             as_attachment=download,
             attachment_filename=filename
+        )
+
+    @classmethod
+    async def response(cls, content, status: int | None = None, headers: dict | None = None, mimetype: str | None = None, content_type: str | None = None) -> Response:
+        return Response(content, status=status, headers=headers, mimetype=mimetype, content_type=content_type)
+
+    @classmethod
+    async def response_csv(cls, rows: list[list], filename: str = "data"):
+        output = StringIO()
+        writer = csv.writer(output)
+        writer.writerows(rows)
+
+        csv_data = f"\ufeff{output.getvalue()}"
+        output.close()
+
+        csv_bytes = csv_data.encode("utf-8")
+        return await cls.send_file(
+            filename_or_io=BytesIO(csv_bytes),
+            mimetype="text/csv",
+            as_attachment=True,
+            attachment_filename=f"{filename}.csv",
         )
