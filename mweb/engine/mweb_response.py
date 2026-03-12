@@ -118,4 +118,5 @@ class MWebResponse:
             mimetype="text/csv",
             as_attachment=True,
             attachment_filename=f"{filename}.csv",
+            headers={"Access-Control-Expose-Headers": "Content-Disposition"}
         )
