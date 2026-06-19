@@ -15,7 +15,7 @@ class Controller(BaseController):
 
 class SSRController(BaseController):
 
-    def __init__(self, name: str, url: str = None, package_name: str = None, assets_dir: str = None, assets_url: str = None, template_dir: str = None):
+    def __init__(self, name: str, url: str | None = None, package_name: str | None = None, assets_dir: str | None = None, assets_url: str | None = None, template_dir: str | None = None):
         if not package_name:
             package_name = __name__
         super().__init__(

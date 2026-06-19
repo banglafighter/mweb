@@ -8,6 +8,8 @@ from .engine.mweb_connector import MWebAppDefinition
 from .engine.mweb_response import MWebResponse
 from .engine.mweb_hook import MWebHook
 from .engine.mweb_util import MWebUtil
+from .engine.mweb_connector import MWebModule
+from .engine.mweb_data import MWebModuleDetails
 from quart import request as mweb_request, redirect as quart_redirect, url_for as quart_url_for
 
 from quart.datastructures import FileStorage as QUartFileStorage
@@ -21,6 +23,8 @@ url_for = quart_url_for
 session = quart_session
 
 __all__ = [
+    "MWebModule",
+    "MWebModuleDetails",
     "request",
     "mweb_request",
     "MWebResponse",
@@ -34,7 +38,7 @@ __all__ = [
     "FileStorage",
     "MWebSystemConfig",
     "MWebHook",
-    "MWebEngine",
+    "MWebUtil",
     "Response",
     "redirect",
     "url_for",
