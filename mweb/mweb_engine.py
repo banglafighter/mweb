@@ -1,4 +1,4 @@
-from mweb.engine.mweb_bismillah import MWebBismillah
+from .engine.mweb_bismillah import MWebBismillah
 
 
 class MWebEngine(MWebBismillah):

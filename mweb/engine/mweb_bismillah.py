@@ -4,22 +4,19 @@ import asyncio
 
 from quart import make_response, send_from_directory
 
-from mw_common.mw_console_log import Console
-from mw_common.mw_data_util import DataUtil
-from mw_common.pw_util import MwUtil
-from mw_file_content.file.mwfc_file_util import FileUtil
-from mw_file_content.file_content.mwfc_data_file_util import DataFileUtil
-from mweb.engine.mweb_base import MWebBase
-from mweb.engine.mweb_cli import MWebCLIGroup
-from mweb.engine.mweb_config import MWebConfig
-from mweb.engine.mweb_data import MWebInternalConfig
-from mweb.engine.mweb_helper import MWebHelper
-from mweb.engine.mweb_hook import MWebHook
+from mw_common import MwUtil, Console, DataUtil
+from mw_file_content import FileUtil, DataFileUtil
+from .mweb_base import MWebBase
+from .mweb_cli import MWebCLIGroup
+from .mweb_config import MWebConfig
+from .mweb_data import MWebInternalConfig
+from .mweb_helper import MWebHelper
+from .mweb_hook import MWebHook
 from .mweb_system_config import MWebSystemConfig
-from mweb.engine.mweb_module_registry import MWebModuleRegistry
-from mweb.engine.mweb_registry import MWebRegistry
-from mweb.engine.mweb_util import MWebUtil
-from mweb_auth.mweb_auth_module import MWebAuthModule
+from .mweb_module_registry import MWebModuleRegistry
+from .mweb_registry import MWebRegistry
+from .mweb_util import MWebUtil
+from mweb_auth import MWebAuthModule
 from mweb_crud import MWebCRUDModule
 from mweb_orm.mweb_orm_module import MWebORMModule
 from mweb_orm.orm.mweb_orm import mweb_orm

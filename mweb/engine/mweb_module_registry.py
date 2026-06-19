@@ -1,7 +1,7 @@
 import traceback
+from mw_common import MwUtil
 from mw_common.mw_console_log import Console
 from mw_common.mw_exception import MwException
-from mw_common.pw_util import MwUtil
 from mweb import MWebSystemConfig
 from mweb.engine.mweb_base import MWebBase
 from mweb.engine.mweb_config import MWebConfig

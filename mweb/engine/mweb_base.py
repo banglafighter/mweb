@@ -7,9 +7,8 @@ import signal
 from quart.utils import observe_changes, MustReloadError, restart
 from quart.app import _cancel_all_tasks
 from quart.helpers import get_debug_flag
-from mw_common.mw_console_log import Console
-from mw_common.mw_exception import MwException
-from mweb import BaseController
+from mw_common import Console, MwException
+from .mweb_controller import BaseController
 
 
 class MWebBase(Quart):
