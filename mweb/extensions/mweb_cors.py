@@ -1,6 +1,7 @@
 import fnmatch
-from mweb import MWebBase, MWebConfig, Response, request
-
+from ..engine.mweb_base import MWebBase
+from ..engine.mweb_config import MWebConfig
+from quart import Response, request
 
 class MWebCORS:
     _config: MWebConfig = None

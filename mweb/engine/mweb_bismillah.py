@@ -32,7 +32,7 @@ class MWebBismillah:
     _hook: MWebHook = None
     _system_config: MWebSystemConfig = None
 
-    def __init__(self, project_root_path: str, name: str = "MWeb", config: MWebConfig = None, internal_config: MWebInternalConfig = None):
+    def __init__(self, project_root_path: str, name: str = "MWeb", config: MWebConfig | None = None, internal_config: MWebInternalConfig = None):
         self._mweb_helper = MWebHelper()
         if not internal_config:
             internal_config = MWebInternalConfig()

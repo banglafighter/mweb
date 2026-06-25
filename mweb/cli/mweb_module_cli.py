@@ -1,9 +1,12 @@
 import asyncio
 from mw_common import Console
-from mweb import MWebBase, MWebConfig, MWebSystemConfig
-from mweb.engine.mweb_cli import MWebCLI
-from mweb.engine.mweb_hook import MWebHook
-from mweb.engine.mweb_module_registry import MWebModuleRegistry
+from ..engine.mweb_cli import MWebCLI
+from ..engine.mweb_hook import MWebHook
+from ..engine.mweb_module_registry import MWebModuleRegistry
+from ..engine.mweb_base import MWebBase
+from ..engine.mweb_config import MWebConfig
+from ..engine.mweb_system_config import MWebSystemConfig
+
 
 mweb_module_cli = MWebCLI("module", help_text="MWeb Module CLI System")
 _mweb_modc_mweb_app: MWebBase | None = None

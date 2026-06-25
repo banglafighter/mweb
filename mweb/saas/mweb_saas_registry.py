@@ -1,4 +1,4 @@
-from mweb.engine.mweb_hook import MWebHook
+from ..engine.mweb_hook import MWebHook
 from .mweb_saas_connector import MWebExternalSaaSConfig
 
 

@@ -1,6 +1,6 @@
-from mweb.engine.mweb_base import MWebBase
-from mweb.engine.mweb_config import MWebConfig
-from mweb.engine.mweb_data import MWebModuleDetails
+from .mweb_base import MWebBase
+from .mweb_config import MWebConfig
+from .mweb_data import MWebModuleDetails
 
 
 class MWebRegistry:

@@ -1,15 +1,13 @@
 import traceback
-from mw_common import MwUtil
-from mw_common.mw_console_log import Console
-from mw_common.mw_exception import MwException
-from mweb import MWebSystemConfig
-from mweb.engine.mweb_base import MWebBase
-from mweb.engine.mweb_config import MWebConfig
-from mweb.engine.mweb_connector import MWebAppDefinition, MWebModule
-from mweb.engine.mweb_data import MWebModuleDetails
-from mweb.engine.mweb_hook import MWebHook
-from mweb.engine.mweb_registry import MWebRegistry
-from mweb.engine.mweb_util import MWebUtil
+from mw_common import MwUtil, Console, MwException
+from .mweb_system_config import MWebSystemConfig
+from .mweb_base import MWebBase
+from .mweb_config import MWebConfig
+from .mweb_connector import MWebAppDefinition, MWebModule
+from .mweb_data import MWebModuleDetails
+from .mweb_hook import MWebHook
+from .mweb_registry import MWebRegistry
+from .mweb_util import MWebUtil
 
 
 class MWebModuleRegistry:

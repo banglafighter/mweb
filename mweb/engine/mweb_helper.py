@@ -1,4 +1,4 @@
-from mweb.engine.mweb_config import MWebConfig
+from .mweb_config import MWebConfig
 
 
 class MWebHelper:
