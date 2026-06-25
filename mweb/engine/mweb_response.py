@@ -3,6 +3,8 @@ import csv
 import os
 from datetime import datetime
 from io import BytesIO, StringIO
+from pathlib import Path
+
 from quart import render_template, make_response, send_from_directory, Response, send_file, render_template_string
 from typing import Any
 from quart.typing import FilePath
@@ -24,7 +26,7 @@ class MWebResponse:
         return asyncio.run(render_template(template_name_or_list=template_name_or_list, **context))
 
     @classmethod
-    async def make_response(cls, content: str | dict | list, headers: dict = None, http_code: int = None):
+    async def make_response(cls, content: str | dict | list, headers: dict | None = None, http_code: int | None = None):
         if http_code is None:
             http_code = 200
         response = await make_response(content, http_code)
@@ -33,7 +35,7 @@ class MWebResponse:
         return response
 
     @classmethod
-    async def send_file(cls, filename_or_io: FilePath | BytesIO, mimetype: str | None = None, as_attachment: bool = False, attachment_filename: str | None = None, headers: dict = None, http_code: int = None):
+    async def send_file(cls, filename_or_io: FilePath | BytesIO, mimetype: str | None = None, as_attachment: bool = False, attachment_filename: str | None = None, headers: dict | None = None, http_code: int | None = None):
         if http_code is None:
             http_code = 200
         response = await send_file(
@@ -48,7 +50,7 @@ class MWebResponse:
         return response
 
     @classmethod
-    async def json_response(cls, content: str | dict | list, headers: dict = None, http_code: int = None):
+    async def json_response(cls, content: str | dict | list, headers: dict | None = None, http_code: int | None = None):
         if not http_code:
             http_code = 200
 
@@ -73,7 +75,7 @@ class MWebResponse:
         )
 
     @classmethod
-    async def response_pdf(cls, bytes_content: bytes = None, file_path: str = None, download: bool = True, filename: str = None):
+    async def response_pdf(cls, bytes_content: bytes | None = None, file_path: str | None = None, download: bool = True, filename: str | None = None):
         if not bytes_content and not file_path:
             raise MwException("Either bytes_content or file_path must be provided.")
 
@@ -118,5 +120,16 @@ class MWebResponse:
             mimetype="text/csv",
             as_attachment=True,
             attachment_filename=f"{filename}.csv",
+            headers={"Access-Control-Expose-Headers": "Content-Disposition"}
+        )
+
+    @classmethod
+    async def response_zip(cls, bytes_content: bytes, filename: str = "unknown"):
+        filename = Path(filename).name.removesuffix(".zip")
+        return await cls.send_file(
+            filename_or_io=BytesIO(bytes_content),
+            mimetype="application/zip",
+            as_attachment=True,
+            attachment_filename=f"{filename}.zip",
             headers={"Access-Control-Expose-Headers": "Content-Disposition"}
         )
