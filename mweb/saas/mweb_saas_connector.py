@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from mweb_orm.orm.mweb_orm_data import DBConnectionData
+from mweb_orm import DBConnectionData
 
 
 class MWebTenantResolver(ABC):

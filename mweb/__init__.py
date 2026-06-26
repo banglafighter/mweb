@@ -11,6 +11,8 @@ from .engine.mweb_util import MWebUtil
 from .engine.mweb_connector import MWebModule
 from .engine.mweb_data import MWebModuleDetails
 from .engine.mweb_registry import MWebRegistry
+from .engine.mweb_cli import MWebCLI
+from .saas.mweb_saas import MWebSaaS, MWebSaaSConst
 from quart import request as mweb_request, redirect as quart_redirect, url_for as quart_url_for
 
 from quart.datastructures import FileStorage as QUartFileStorage
@@ -24,6 +26,9 @@ url_for = quart_url_for
 session = quart_session
 
 __all__ = [
+    "MWebSaaS",
+    "MWebSaaSConst",
+    "MWebCLI",
     "MWebRegistry",
     "MWebModule",
     "MWebModuleDetails",
