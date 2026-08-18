@@ -98,7 +98,8 @@ class MWebResponse:
             filename_or_io=pdf_source,
             mimetype="application/pdf",
             as_attachment=download,
-            attachment_filename=filename
+            attachment_filename=filename,
+            headers={"Access-Control-Expose-Headers": "Content-Disposition"}
         )
 
     @classmethod
