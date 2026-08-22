@@ -35,6 +35,13 @@ class MWebResponse:
         return response
 
     @classmethod
+    async def make_text_response(cls, content: str | dict | list, headers: dict | None = None, http_code: int | None = None):
+        if not headers:
+            headers = {}
+        headers["Content-Type"] = "text/plain; charset=utf-8"
+        return await cls.make_response(content=content, headers=headers, http_code=http_code)
+
+    @classmethod
     async def send_file(cls, filename_or_io: FilePath | BytesIO, mimetype: str | None = None, as_attachment: bool = False, attachment_filename: str | None = None, headers: dict | None = None, http_code: int | None = None):
         if http_code is None:
             http_code = 200
