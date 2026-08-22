@@ -35,7 +35,7 @@ class MWebResponse:
         return response
 
     @classmethod
-    async def make_text_response(cls, content: str | dict | list, headers: dict | None = None, http_code: int | None = None):
+    async def make_text_response(cls, content: str, headers: dict | None = None, http_code: int | None = None):
         if not headers:
             headers = {}
         headers["Content-Type"] = "text/plain; charset=utf-8"
