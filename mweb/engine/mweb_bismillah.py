@@ -68,16 +68,20 @@ class MWebBismillah:
 
         # Register Module
         self._mweb_module_registry = MWebModuleRegistry()
-        asyncio.run(
-            self._mweb_module_registry.register(
+        asyncio.run(self._register_modules())
+
+    async def _register_modules(self):
+        try:
+            await self._mweb_module_registry.register(
                 mweb_app=self._mweb_app,
                 config=self._config,
                 hook=self._hook,
                 mweb_orm=mweb_orm,
                 system_config=self._system_config,
-                is_cli=False
+                is_cli=False,
             )
-        )
+        finally:
+            await mweb_orm.reset_engines()
 
     def run(self):
         self._mweb_app.run(host=self._config.HOST, port=self._config.PORT, debug=self._config.DEBUG)
